@@ -1,0 +1,24 @@
+Common:
+ ☐ Allow untyped use (Dynamic/Reflection)
+ ☐ Make it safe regarding thread death during threaHandle/vmAddress extraction
+
+Haxe:
+ ✔ 2.10 @done (13-05-29 02:29)
+ ☐ 3.0
+
+Targets and architectures:
+ ☐ Neko
+   ☐ Custom Neko 1.8.2
+     ☐ Linux 32
+     ✔ Linux 64 @done (13-05-29 02:29)
+     ☐ Windows 32
+   ☐ Neko 2.0
+     ☐ Linux 32
+     ☐ Linux 64
+     ☐ Windows 32
+ ☐ Hxcpp
+   ☐ Linux 32
+   ☐ Linux 64
+   ☐ Windows 32
+ ☐ Java
+ ☐ C#

@@ -1,0 +1,9 @@
+<project name="hx-thread-info" url="http://jonasmalaco.com" license="BSD">
+    <user name="jonasmalacofilho"/>
+    <tag v="neko"/>
+    <tag v="cffi"/>
+    <description>Complementary thread information</description>
+    <!-- depends name="haxe" version="2.10"/ -->
+    <!-- depends name="neko" version="1.8.3"/ --><!--1.8.2 + back port of the NEKO_64BITS autodetection fix -->
+    <version name="0.0.1">Handle and vm address. Works on Haxe 2.10 and custom Neko 1.8.2 with fix for NEKO_64BITS detection.</version>
+</project>

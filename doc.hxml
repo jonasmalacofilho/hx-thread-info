@@ -1,0 +1,6 @@
+-xml haxelib/haxedoc.xml
+--no-output
+-neko bin/test.n
+-main Test
+-cp src/test
+-cp haxelib
