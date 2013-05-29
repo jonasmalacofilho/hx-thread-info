@@ -70,8 +70,8 @@ class Test {
 		wait( 1.05 );
 		for ( i in 0...NTHREADS ) {
 			var t:Thread = Thread.readMessage( false ); // typing is important:
-			                                            // the magic happens is
-			                                            // in the property getter
+			                                            // the magic happens in
+			                                            // the property getter
 			if ( t != null ) {
 				var j = thash.get( t.threadHandle );
 				thash.remove( t.threadHandle );
