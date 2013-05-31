@@ -32,9 +32,15 @@
  */
 package neko.vm;
 
+/**
+	Thread object neko handle (neko abstract)
+**/
 enum ThreadHandle {
 }
 
+/**
+	Thread object
+**/
 class Thread {
 
 	var handle : ThreadHandle;
@@ -112,7 +118,7 @@ class Thread {
 	function get_vmAddress() {
 		return new String( str_thread_vm_address( handle ) );
 	}
-	
+
 	static var str_thread_vm_address = neko.Lib.load( "hx_thread_info", "str_thread_vm_address", 1 );
 
 	/**

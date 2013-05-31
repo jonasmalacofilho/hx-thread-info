@@ -799,23 +799,22 @@
 		</meta>
 	</class>
 	<class path="Test" params="" file="src/test/Test.hx">
-		<NTHREADS get="inline" set="null" line="37" static="1"><x path="Int"/></NTHREADS>
+		<NTHREADS get="inline" set="null" line="41" static="1"><x path="Int"/></NTHREADS>
 		<mainThread static="1"><c path="neko.vm.Thread"/></mainThread>
-		<main set="method" line="40" static="1">
+		<main set="method" line="44" static="1">
 			<f a=""><x path="Void"/></f>
-			<meta>
-				<m n=":keep"/>
-				<m n=":keep"/>
-			</meta>
+			<meta><m n=":keep"/></meta>
 		</main>
-		<tryCurrentVm set="method" line="47" static="1"><f a=""><x path="Void"/></f></tryCurrentVm>
-		<tryOtherThreadInfos set="method" line="52" static="1"><f a=""><x path="Void"/></f></tryOtherThreadInfos>
-		<tryMulti set="method" line="59" static="1"><f a=""><x path="Void"/></f></tryMulti>
-		<wait set="method" line="92" static="1"><f a="s">
+		<tryCurrentVm set="method" line="51" static="1"><f a=""><x path="Void"/></f></tryCurrentVm>
+		<tryOtherThreadInfos set="method" line="56" static="1"><f a=""><x path="Void"/></f></tryOtherThreadInfos>
+		<tryMulti set="method" line="63" static="1"><f a=""><x path="Void"/></f></tryMulti>
+		<wait set="method" line="105" static="1"><f a="s">
 	<x path="Float"/>
 	<x path="Void"/>
 </f></wait>
-		<tryMulti_threadMain set="method" line="96" static="1"><f a=""><x path="Void"/></f></tryMulti_threadMain>
+		<tryMulti_threadMain set="method" line="109" static="1"><f a=""><x path="Void"/></f></tryMulti_threadMain>
+		<haxe_doc>Test/example of accessing complementary information about threads and their
+	vms</haxe_doc>
 	</class>
 	<class path="haxe.EnumTools" params="" file="/opt/haxe/haxe/std/haxe/EnumTools.hx" extern="1">
 		<getName public="1" params="T" get="inline" set="null" line="41" static="1">
@@ -1046,20 +1045,20 @@
 		<new public="1" set="method" line="26"><f a=""><x path="Void"/></f></new>
 		<meta><m n=":keep"/></meta>
 	</class>
-	<enum path="neko.vm.ThreadHandle" params="" file="haxelib/neko/vm/Thread.hx" module="neko.vm.Thread"/>
+	<enum path="neko.vm.ThreadHandle" params="" file="haxelib/neko/vm/Thread.hx" module="neko.vm.Thread"><haxe_doc>Thread object neko handle (neko abstract)</haxe_doc></enum>
 	<class path="neko.vm.Thread" params="" file="haxelib/neko/vm/Thread.hx">
-		<current public="1" set="method" line="56" static="1">
+		<current public="1" set="method" line="62" static="1">
 			<f a=""><c path="neko.vm.Thread"/></f>
 			<haxe_doc>Returns the current thread.</haxe_doc>
 		</current>
-		<create public="1" set="method" line="63" static="1">
+		<create public="1" set="method" line="69" static="1">
 			<f a="callb">
 				<f a=""><x path="Void"/></f>
 				<c path="neko.vm.Thread"/>
 			</f>
 			<haxe_doc>Creates a new thread that will execute the [callb] function, then exit.</haxe_doc>
 		</create>
-		<readMessage public="1" set="method" line="72" static="1">
+		<readMessage public="1" set="method" line="78" static="1">
 			<f a="block">
 				<x path="Bool"/>
 				<d/>
@@ -1068,7 +1067,7 @@
 		blocks until a message is available. If [block] is false, the function
 		returns [null] if no message is available.</haxe_doc>
 		</readMessage>
-		<thread_create line="80" static="1"><f a=":">
+		<thread_create line="86" static="1"><f a=":">
 	<f a="_">
 		<unknown/>
 		<x path="Void"/>
@@ -1076,33 +1075,33 @@
 	<unknown/>
 	<e path="neko.vm.ThreadHandle"/>
 </f></thread_create>
-		<thread_current line="81" static="1"><f a=""><e path="neko.vm.ThreadHandle"/></f></thread_current>
-		<thread_send line="82" static="1"><f a=":">
+		<thread_current line="87" static="1"><f a=""><e path="neko.vm.ThreadHandle"/></f></thread_current>
+		<thread_send line="88" static="1"><f a=":">
 	<e path="neko.vm.ThreadHandle"/>
 	<d/>
 	<unknown/>
 </f></thread_send>
-		<thread_read_message line="83" static="1"><f a="">
+		<thread_read_message line="89" static="1"><f a="">
 	<x path="Bool"/>
 	<unknown/>
 </f></thread_read_message>
-		<str_thread_handle line="101" static="1"><f a="">
+		<str_thread_handle line="107" static="1"><f a="">
 	<e path="neko.vm.ThreadHandle"/>
 	<c path="String"/>
 </f></str_thread_handle>
-		<str_thread_vm_address line="116" static="1"><f a="">
+		<str_thread_vm_address line="122" static="1"><f a="">
 	<e path="neko.vm.ThreadHandle"/>
 	<c path="String"/>
 </f></str_thread_vm_address>
-		<currentVmAddress public="1" set="method" line="124" static="1">
+		<currentVmAddress public="1" set="method" line="130" static="1">
 			<f a=""><c path="String"/></f>
 			<haxe_doc>Returns the hexadecimal (string) representation of the current vm address
 
 		There are no garanties concerning size or format, only that it will be
 		consistent during runtime.</haxe_doc>
 		</currentVmAddress>
-		<str_current_vm_address line="128" static="1"><f a=""><c path="String"/></f></str_current_vm_address>
-		<get_vmAddress set="method" line="112"><f a=""><c path="String"/></f></get_vmAddress>
+		<str_current_vm_address line="134" static="1"><f a=""><c path="String"/></f></str_current_vm_address>
+		<get_vmAddress set="method" line="118"><f a=""><c path="String"/></f></get_vmAddress>
 		<vmAddress public="1" get="accessor" set="null">
 			<c path="String"/>
 			<haxe_doc>Contains a hexadecimal (string) representation of the thread vm address.
@@ -1111,7 +1110,7 @@
 		no garanties concerning size or format, only that it will be consistent
 		during runtime.</haxe_doc>
 		</vmAddress>
-		<get_threadHandle set="method" line="97"><f a=""><c path="String"/></f></get_threadHandle>
+		<get_threadHandle set="method" line="103"><f a=""><c path="String"/></f></get_threadHandle>
 		<threadHandle public="1" get="accessor" set="null">
 			<c path="String"/>
 			<haxe_doc>Contains a hexadecimal (string) representation of the thread handle.
@@ -1120,11 +1119,11 @@
 		no garanties concerning size or format, only that it will be consistent
 		during runtime.</haxe_doc>
 		</threadHandle>
-		<__compare set="method" line="76"><f a="t">
+		<__compare set="method" line="82"><f a="t">
 	<a><handle set="null"><unknown/></handle></a>
 	<unknown/>
 </f></__compare>
-		<sendMessage public="1" set="method" line="49">
+		<sendMessage public="1" set="method" line="55">
 			<f a="msg">
 				<d/>
 				<x path="Void"/>
@@ -1132,9 +1131,10 @@
 			<haxe_doc>Send a message to the thread queue. This message can be readed by using [readMessage].</haxe_doc>
 		</sendMessage>
 		<handle><e path="neko.vm.ThreadHandle"/></handle>
-		<new set="method" line="42"><f a="h">
+		<new set="method" line="48"><f a="h">
 	<e path="neko.vm.ThreadHandle"/>
 	<x path="Void"/>
 </f></new>
+		<haxe_doc>Thread object</haxe_doc>
 	</class>
 </haxe>

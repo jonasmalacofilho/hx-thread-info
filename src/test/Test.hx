@@ -32,6 +32,10 @@
 import neko.vm.Lock;
 import neko.vm.Thread;
 
+/**
+	Test/example of accessing complementary information about threads and their
+	vms
+**/
 class Test {
 
 	static inline var NTHREADS = 30;
