@@ -17,21 +17,22 @@ haxelib: hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
 test: bin/test.n Makefile
 	neko bin/test.n
 clean:
-	rm -Rf *.ndll *.o
-	rm -f haxelib/haxedoc.xml
+	rm ${OBJECTS}
 	rm -Rf doc
-	rm -Rf *.n
+	rm -Rf bin/*.n
 	rm -Rf hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
 clean-all: clean
 	rm -f hx-thread-info-*.zip
 unninstall:
 	haxelib remove hx-thread-info
 install: haxelib
+	haxelib local hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
+install-2.10: haxelib
 	haxelib test hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
 dev:
 	haxelib dev hx-thread-info ${PWD}/haxelib
 all: clean haxelib install test
-.PHONY: ndlls doc haxelib test clean clean-all unninstall install dev all
+.PHONY: ndlls doc haxelib test clean clean-all unninstall install install-2.10 dev all
 
 ${LINUX_64_NDLLS}: ${OBJECTS} Makefile
 	mkdir -p haxelib/ndll/Linux64

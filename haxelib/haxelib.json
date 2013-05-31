@@ -1,0 +1,14 @@
+{
+  "name": "hx-thread-info",
+  "url" : "http://jonasmalaco.com",
+  "license": "BSD",
+  "tags": [ "neko", "cffi" ],
+  "description": "Complementary thread information",
+  "version": "0.1.0",
+  "releasenote": "Haxe 3/Neko 2",
+  "contributors": [ "Jonas" ],
+  "ignored_dependencies": {
+    "haxe": "3.0.0",
+    "neko": "2.0.0"
+  }
+}

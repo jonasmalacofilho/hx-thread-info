@@ -94,7 +94,10 @@ class Thread {
 	**/
 	public var threadHandle( get_threadHandle, never ):String;
 
-	function get_threadHandle() return new String( str_thread_handle( handle ) )
+	function get_threadHandle() {
+		return new String( str_thread_handle( handle ) );
+	}
+
 	static var str_thread_handle = neko.Lib.load( "hx_thread_info", "str_thread_handle", 1 );
 
 	/**
@@ -104,9 +107,12 @@ class Thread {
 		no garanties concerning size or format, only that it will be consistent
 		during runtime.
 	**/
-	public var vmAddress( get_vmAddress, never ):String;
+	public var vmAddress( get, never ):String;
 
-	function get_vmAddress() return new String( str_thread_vm_address( handle ) )
+	function get_vmAddress() {
+		return new String( str_thread_vm_address( handle ) );
+	}
+	
 	static var str_thread_vm_address = neko.Lib.load( "hx_thread_info", "str_thread_vm_address", 1 );
 
 	/**

@@ -58,38 +58,49 @@ class Test {
 
 	static function tryMulti() {
 		trace( "Begin tryMulti" );
-		var thash = new Hash();
-		thash.set( mainThread.threadHandle, -1 ); // -1 is main
+		var tmap = new Map<String,Int>();
+		tmap.set( mainThread.threadHandle, -1 ); // -1 is main
 		for ( i in 0...NTHREADS ) {
 			var t = Thread.create( tryMulti_threadMain );
 			t.sendMessage( mainThread );
-			thash.set( t.threadHandle, i );
+			if ( tmap.exists( t.threadHandle ) )
+				trace( "Warning: handle "+t.threadHandle+" already known" );
+			tmap.set( t.threadHandle, i );
 			trace( "Created thread "+i+": handle "+t.threadHandle+", vm "+t.vmAddress );
 		}
+		trace( tmap );
 		trace( "Waiting" );
+		var done = 0;
 		wait( 1.05 );
 		for ( i in 0...NTHREADS ) {
 			var t:Thread = Thread.readMessage( false ); // typing is important:
 			                                            // the magic happens in
 			                                            // the property getter
-			if ( t != null ) {
-				var j = thash.get( t.threadHandle );
-				thash.remove( t.threadHandle );
+			if ( t != null && tmap.exists( t.threadHandle ) ) {
+				var j = tmap.get( t.threadHandle );
+				tmap.remove( t.threadHandle );
 				trace( "Done "+j+": handle "+t.threadHandle+", vm "+t.vmAddress );
+				done++;
 				t.sendMessage( null );
 			}
 		}
 		var error = false;
-		for ( x in thash )
+		for ( x in tmap )
 			if ( x > 0 ) {
 				trace( "Thread "+x+" was still active." );
 				error = true;
 			}
-		trace( "End tryMulti: " + ( error ? "FAILED..." : "SUCCESS!" ) );
+		if ( error )
+			trace( "End tryMulti: FAILED..." );
+		else if ( done != NTHREADS )
+			trace( "End tryMulti: FAILED... probably we found threads that shared handles" );
+		else
+			trace( "End tryMulti: success!" );
 	}
 
-	static function wait( s:Float )
-		new Lock().wait( s )
+	static function wait( s:Float ) {
+		new Lock().wait( s );
+	}
 
 	static function tryMulti_threadMain() {
 		var m:Thread = Thread.readMessage( true );
@@ -101,3 +112,7 @@ class Test {
 	}
 
 }
+
+#if !haxe3
+typedef Map<String,V> = Hash<V>;
+#end
