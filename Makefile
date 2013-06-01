@@ -1,6 +1,6 @@
 # This Makefile is in the public domain.
 
-HX_THREAD_INFO_VERSION = 0.0.1
+HX_THREAD_INFO_VERSION = 0.1.0
 
 CFLAGS = -Wall -O3 -fPIC -fomit-frame-pointer -I ${NEKOPATH}/../vm -D_GNU_SOURCE -I libs/common
 MAKESO = $(CC) -shared -Wl,-Bsymbolic
