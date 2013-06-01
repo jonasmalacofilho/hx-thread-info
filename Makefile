@@ -17,29 +17,29 @@ haxelib: hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
 test: bin/test.n Makefile
 	neko bin/test.n
 clean:
-	rm ${OBJECTS}
+	rm -f ${OBJECTS}
+	rm -f bin/*.n
+purge: clean
+	rm -f haxelib/haxedoc.xml
 	rm -Rf doc
-	rm -Rf bin/*.n
-	rm -Rf hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
-clean-all: clean
 	rm -f hx-thread-info-*.zip
 unninstall:
 	haxelib remove hx-thread-info
-install: haxelib
+install: hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
 	haxelib local hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
-install-2.10: haxelib
+install-2.10: hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
 	haxelib test hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
 dev:
 	haxelib dev hx-thread-info ${PWD}/haxelib
 all: clean haxelib install test
-.PHONY: ndlls doc haxelib test clean clean-all unninstall install install-2.10 dev all
+.PHONY: ndlls doc haxelib test clean purge unninstall install install-2.10 dev all
 
 ${LINUX_64_NDLLS}: ${OBJECTS} Makefile
 	mkdir -p haxelib/ndll/Linux64
 	${MAKESO} -o $@ ${OBJECTS} ${LINUX_64_NDLL_FLAGS}
 haxelib/haxedoc.xml: src/test/Test.hx haxelib/neko/vm/Thread.hx Makefile
 	haxe doc.hxml
-hx-thread-info-${HX_THREAD_INFO_VERSION}.zip: ndlls doc
+hx-thread-info-${HX_THREAD_INFO_VERSION}.zip: ${LINUX_64_NDLLS} haxelib/haxedoc.xml Makefile
 	cd haxelib && zip -r ../hx-thread-info-${HX_THREAD_INFO_VERSION}.zip .
 bin/test.n: haxelib/ndll/Linux64/hx_thread_info.ndll src/test/Test.hx haxelib/neko/vm/Thread.hx Makefile
 	mkdir -p bin

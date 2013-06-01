@@ -98,7 +98,7 @@ class Thread {
 		no garanties concerning size or format, only that it will be consistent
 		during runtime.
 	**/
-	public var threadHandle( get_threadHandle, never ):String;
+	public var threadHandle( #if haxe3 get #else get_threadHandle #end, never ):String;
 
 	function get_threadHandle() {
 		return new String( str_thread_handle( handle ) );
@@ -113,7 +113,7 @@ class Thread {
 		no garanties concerning size or format, only that it will be consistent
 		during runtime.
 	**/
-	public var vmAddress( get, never ):String;
+	public var vmAddress( #if haxe3 get #else get_vmAddress #end, never ):String;
 
 	function get_vmAddress() {
 		return new String( str_thread_vm_address( handle ) );

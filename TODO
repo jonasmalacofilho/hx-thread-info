@@ -1,10 +1,13 @@
 Common:
  ☐ Allow untyped use (Dynamic/Reflection)
  ☐ Make it safe regarding thread death during threaHandle/vmAddress extraction
+ ☐ Improve distribuition
+   ☐ Supply all sources on the haxelib package
+   ☐ test.n becames run.n
 
 Haxe:
  ✔ 2.10 @done (13-05-29 02:29)
- ☐ 3.0
+ ✔ 3.0 @done (13-06-01 02:46)
 
 Targets and architectures:
  ☐ Neko
@@ -14,7 +17,7 @@ Targets and architectures:
      ☐ Windows 32
    ☐ Neko 2.0
      ☐ Linux 32
-     ☐ Linux 64
+     ✔ Linux 64 @done (13-06-01 02:46)
      ☐ Windows 32
  ☐ Hxcpp
    ☐ Linux 32
