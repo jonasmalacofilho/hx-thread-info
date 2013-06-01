@@ -98,14 +98,14 @@ value str_thread_handle( value handle ) {
 #	ifdef NEKO_WINDOWS
 	failure( "not implemented for Windows threads yet" );
 #	else
-	buf = (char*)malloc( sizeof( t->phandle ) + 3 );
+	buf = (char*)malloc( sizeof( t->phandle )*2 + 3 );
 	unsigned char *cph = (unsigned char*)(void*)(&t->phandle);
 	size_t i;
 	sprintf( (char*)(buf), "0x" );
-	for ( i=0; i<sizeof( t->phandle ); i++ ) {
-		sprintf( &buf[i+2], "%2.2x", cph[i] );
+	for ( i = 0; i < sizeof( t->phandle ); i++ ) {
+		sprintf( &buf[i*2+2], "%2.2x", cph[i] );
 	}
-	buf[i+2] = 0;
+	buf[i*2+2] = 0;
 #	endif
 	value str = alloc_string( buf );
 	free( buf );
