@@ -1,5 +1,5 @@
 /**
-	Test/example of accessing complementary information about threads and their
+	Example of accessing complementary information about threads and their
 	vms
 	
 	Copyright (c) 2013, Jonas Malaco Filho
@@ -33,10 +33,10 @@ import neko.vm.Lock;
 import neko.vm.Thread;
 
 /**
-	Test/example of accessing complementary information about threads and their
+	Example of accessing complementary information about threads and their
 	vms
 **/
-class Test {
+class Example {
 
 	static inline var NTHREADS = 30;
 	static var mainThread:Thread;

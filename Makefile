@@ -4,24 +4,26 @@ HX_THREAD_INFO_VERSION = 0.1.0
 
 CFLAGS = -Wall -O3 -fPIC -fomit-frame-pointer -I ${NEKOPATH}/../vm -D_GNU_SOURCE -I libs/common
 MAKESO = $(CC) -shared -Wl,-Bsymbolic
-OBJECTS = src/cffi/hx_thread_info.o
+OBJECTS = cffi/neko/hx_thread_info.o
 
 LINUX_64_NDLL_FLAGS = -L${NEKOPATH} -lneko
-LINUX_64_NDLLS = haxelib/ndll/Linux64/hx_thread_info.ndll
+LINUX_64_NDLLS = ndll/Linux64/hx_thread_info.ndll
 
 ndlls: ${LINUX_64_NDLLS} Makefile
-doc: haxelib/haxedoc.xml Makefile
+doc: haxedoc.xml Makefile
 	mkdir -p doc
-	cd doc && haxedoc ../haxelib/haxedoc.xml
+	cd doc && haxedoc ../haxedoc.xml
 haxelib: hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
-test: bin/test.n Makefile
-	neko bin/test.n
+try: example.n Makefile
+	neko example.n
 clean:
 	rm -f ${OBJECTS}
-	rm -f bin/*.n
+	rm -f *.n
 purge: clean
-	rm -f haxelib/haxedoc.xml
+	rm -f haxedoc.xml
 	rm -Rf doc
+	rm -f hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
+purge-old: purge
 	rm -f hx-thread-info-*.zip
 unninstall:
 	haxelib remove hx-thread-info
@@ -31,16 +33,16 @@ install-2.10: hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
 	haxelib test hx-thread-info-${HX_THREAD_INFO_VERSION}.zip
 dev:
 	haxelib dev hx-thread-info ${PWD}/haxelib
-all: clean haxelib install test
-.PHONY: ndlls doc haxelib test clean purge unninstall install install-2.10 dev all
+all: purge install try
+.PHONY: ndlls doc haxelib try run clean purge purge-old unninstall install install-2.10 dev all
 
 ${LINUX_64_NDLLS}: ${OBJECTS} Makefile
-	mkdir -p haxelib/ndll/Linux64
+	mkdir -p ndll/Linux64
 	${MAKESO} -o $@ ${OBJECTS} ${LINUX_64_NDLL_FLAGS}
-haxelib/haxedoc.xml: src/test/Test.hx haxelib/neko/vm/Thread.hx Makefile
+haxedoc.xml: Example.hx neko/vm/Thread.hx Makefile
 	haxe doc.hxml
-hx-thread-info-${HX_THREAD_INFO_VERSION}.zip: ${LINUX_64_NDLLS} haxelib/haxedoc.xml Makefile
-	cd haxelib && zip -r ../hx-thread-info-${HX_THREAD_INFO_VERSION}.zip .
-bin/test.n: haxelib/ndll/Linux64/hx_thread_info.ndll src/test/Test.hx haxelib/neko/vm/Thread.hx Makefile
+example.n: ndll/Linux64/hx_thread_info.ndll Example.hx neko/vm/Thread.hx Makefile
 	mkdir -p bin
-	haxe test.hxml
+	haxe example.hxml
+hx-thread-info-${HX_THREAD_INFO_VERSION}.zip: ${LINUX_64_NDLLS} haxedoc.xml Makefile
+	zip hx-thread-info-${HX_THREAD_INFO_VERSION}.zip `find . -type f ! -ipath "*/.*" ! -ipath "*/*.zip" ! -ipath "./doc*"`

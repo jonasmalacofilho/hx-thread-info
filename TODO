@@ -1,9 +1,10 @@
 Common:
  ☐ Allow untyped use (Dynamic/Reflection)
  ☐ Make it safe regarding thread death during threaHandle/vmAddress extraction
- ☐ Improve distribuition
-   ☐ Supply all sources on the haxelib package
-   ☐ test.n becames run.n
+ ✔ Improve distribuition @done (13-06-01 03:29)
+   ✔ Supply all sources on the haxelib package @done (13-06-01 03:29)
+   ✘ test.n becames run.n @cancelled (13-06-01 03:29)
+   ✔ Rename Test to Example @done (13-06-01 03:29)
 
 Haxe:
  ✔ 2.10 @done (13-05-29 02:29)

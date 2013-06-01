@@ -1,4 +1,0 @@
--neko bin/test.n
--main Test
--cp src/test
--lib hx-thread-info
